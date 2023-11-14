@@ -8,7 +8,7 @@ import HomeScreen from '../screens/HomeScreen'
 import DiscoverScreen from '../screens/DiscoverScreen'
 import SavedScreen from '../screens/SavedScreen'
 import SearchScreen from '../screens/SearchScreen'
-import SplashScreen from '../screens/SplashScreen'
+import SplashScreens from '../screens/SplashScreens'
 import WelcomeScreen from '../screens/WelcomeScreen'
 import {Ionicons} from '@expo/vector-icons'
 
@@ -16,6 +16,8 @@ const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
 export default function AppNavigation() {
+
+  const {colorSchema, toggleColorSchema} = useColorScheme();
 
     const TabNavigation = ()=>{
         return(
@@ -55,11 +57,12 @@ export default function AppNavigation() {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        {/*
-        <Stack.Screen name='Splash' component={SplashScreen}/> 
+      <Stack.Navigator
+    
+      >
+        
+        <Stack.Screen name='Splash' component={SplashScreens}/> 
         <Stack.Screen name='Welcome' component={WelcomeScreen}/> 
-        */}
         <Stack.Screen name='HomeTab' component={TabNavigation}/>
         
       </Stack.Navigator>
