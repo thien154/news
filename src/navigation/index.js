@@ -19,20 +19,35 @@ export default function AppNavigation() {
 
     const TabNavigation = ()=>{
         return(
-            <Tab.Navigator  >
-                <Tab.Screen name="Home" component={HomeScreen}
-                 options={{
-                  headerShown:false,
-                  tabBarIcon:()=>{
-                    return (
-                    <Ionicons name='home'/>
-                    )
-                  }
-                  
-                 }}
-                />
+            <Tab.Navigator  
+            screenOptions={({route})=>({
+              tabBarIcon:({focused, color, size})=>{
+                let iconName ;
+                if(route.name==="Home")
+                {
+                  iconName="home"
+                }
+                else if(route.name==="Discover")
+                {
+                  iconName="compass-outline"
+                }
+                else if (route.name === "Saved") {
+                  iconName = "bookmark-outline";
+                } else if (route.name === "Search") {
+                  iconName = "search-outline";
+                }
+
+                return <Ionicons name={iconName} size={24} color={color} />;
+
+              },
+              tabBarActiveTintColor: 'tomato',
+              tabBarInactiveTintColor: 'gray',
+
+            })}
+            >
+                <Tab.Screen name="Home" component={HomeScreen}/>
                 <Tab.Screen name='Discover' component={DiscoverScreen} />
-                <Tab.Screen name='Save' component={SavedScreen}/>
+                <Tab.Screen name='Saved' component={SavedScreen}/>
                 <Tab.Screen name='Search' component={SearchScreen}/>
             </Tab.Navigator>
         )
